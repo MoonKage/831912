@@ -1,0 +1,80 @@
+1.Um nível de indentação por método;
+
+R:Devemos sempre identar os codigos para melhorar a leitura e compreendimento do mesmo.
+
+//Nivel 0
+class Pessoa
+{
+	//Nivel 1
+    public function getNumeroCelular(string $ddd)
+    {
+		//Nivel 2
+		return $numeroCelular;
+    }
+	//Nivel 1
+	public function getNumeroCasa(string $rua)
+    {
+		//Nivel 2
+		return $numeroCasa;
+    }
+}
+-----------------------------------------------------------------
+2.Não use ELSE;
+
+foreach ($pessoas as $pessoa) {
+    if ($pessoa->pagar()) {
+        $report[] = [$pessoa->name => 'Pagou'];
+        continue;
+		//Para substituir o else é utilizado o comando "continue;" o mesmo força a saida do "foreach"
+    }
+    $report[] = [$pessoa->name => 'Não Pagou'];
+}
+-----------------------------------------------------------------
+3.Envolva seus tipos primitivos;
+
+//O banco de dados interpreta yyyy-mm-dd, se não houver tratativa poderá dar problemas, 
+como insetir 'dd/mm/yyyy'
+$customer = new Customer('John Doe', '1983-02-10');
+-----------------------------------------------------------------
+4.Envolva suas collections em classes;
+
+$pessoas = new pessoas; //Criando a pessoa
+
+$carteiraPessoa = $pessoas->procurarCarteira(); //Procurando em qual pessoa devemos atribuir 
+
+$carteiraPessoa->addDinheiro(new Dinheiro('R$ 50,00')); //Atribuindo algo a pessoa selecionada
+-----------------------------------------------------------------
+5.Uma chamada de método por linha;
+
+$comerciante = $comercianteBase->getId(xxx); //Aqui selecionamos onde será atribuido
+
+$saldo = $comerciante->getSaldo(xxx); //Metodo pertence ao comerciante
+-----------------------------------------------------------------
+6.Não abrevie;
+
+$CPF = new CPF(); //A abreviação das informações pode causar erros de interpretação
+
+$cadastroPessoaFisica = new cadastroPessoaFisica();//Sempre devemos usar os nomes por extenso 
+-----------------------------------------------------------------
+7.Mantenha as classes pequenas;
+
+R: É recomendado que uma classe tenha no máximo 50 linhas, caso o mesmo exceda esse valor, pense em quebrar a classe em outras classes menores
+-----------------------------------------------------------------
+8.Não tenha classes com mais de duas variáveis de instancia;
+
+R: Qualquer classe que conhenha uma coleção de array, não deve conter outros valores.
+-----------------------------------------------------------------
+9.Sem getters e setters;
+
+class Pessoa {
+    protected $nome;
+
+    protected $compras;
+	
+	// Ao invés de utilizar setNovaCompra, podemos utilizar outros nomes como "adicionar"
+    public function adicionarNovaCompra() 
+    {
+        $this->compras++;
+    }
+}
+-----------------------------------------------------------------
